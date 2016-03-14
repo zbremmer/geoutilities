@@ -17,7 +17,6 @@ Function Geocode(address As String, Optional apiKey) As String
   'Build the URL query
   query = "https://maps.googleapis.com/maps/api/geocode/xml?"
   query = query & "address=" & URLEncode(address)
-  query = query & "&sensor=false"
   If Not IsMissing(apiKey) Then query = query & "&key=" & Trim(apiKey)
   
   'Create and send synchronous HTTP request
@@ -47,8 +46,45 @@ Function Geocode(address As String, Optional apiKey) As String
     Geocode = status
   End If
   
+End Function
 
- 
+Public Function ZipCode(latitude As String, longitude As String, apiKey As String) As String
+
+'This function takes latitude, longitude, and required apiKey as parameters and returns the zip code for the location
+'https://developers.google.com/maps/documentation/geocoding/intro#ReverseGeocoding
+  
+Dim query As String
+Dim result As New MSXML2.DOMDocument
+Dim service As New MSXML2.XMLHTTP
+Dim nodes As MSXML2.IXMLDOMNodeList
+Dim node As MSXML2.IXMLDOMNode
+Dim status As String
+    
+'Build the URL query
+query = "https://maps.googleapis.com/maps/api/geocode/xml?"
+query = query & "latlng=" & URLEncode(latitude) & "," & URLEncode(longitude)
+query = query & "&result_type=postal_code"
+query = query & "&key=" & Trim(apiKey)
+  
+'Create and send synchronous HTTP request
+service.Open "GET", query, False
+service.send
+  
+'Load XML, get lat/long, and handle any errors
+result.LoadXML (service.responseText)
+  
+'Get and return first result. Multiple results are generally ordered from most specific to least specific
+
+If StrComp(result.SelectSingleNode("GeocodeResponse/status").Text, "OK", vbTextCompare) = 0 Then
+    ZipCode = result.SelectSingleNode("GeocodeResponse/result/address_component/long_name").Text
+Else 'attribute level error (ZERO_RESULTS, INVALID_REQUEST, OVER_QUERY_LIMIT)
+    status = result.SelectSingleNode("GeocodeResponse/status").Text
+    If Not result.SelectSingleNode("GeocodeResponse/error_message") Is Nothing Then
+        status = status + " " + result.SelectSingleNode("GeocodeResponse/error_message").Text
+    End If
+    ZipCode = status
+End If
+
 End Function
 
 Public Function Elevation(latitude As String, longitude As String, Optional apiKey, Optional units As String = "metric") As String
