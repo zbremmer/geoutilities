@@ -24,6 +24,14 @@ Elevation(latitude, longitude, Optional apiKey, Optional units)**
 
 This function uses a latitude / longitude pair to find the elevation at that location. User may specify ‘metric’ or ‘imperial’ units – the default will be metric. Result string units are meters or feet.
 
+**ZipCode(latitude, longitude, apiKey)**
+
+This function uses latitude and longitude to return the zip code for that location. Note: A valid Google Maps API key is required to use this function.
+
+Elevation(latitude, longitude, Optional apiKey, Optional units)**
+
+This function uses a latitude / longitude pair to find the elevation at that location. User may specify ‘metric’ or ‘imperial’ units – the default will be metric. Result string units are meters or feet.
+
 **TransitDistAddr(origin, destination, Optional mode, Optional units)**
 
 This function uses an address for the start and end points to the find distance between locations. Users can specify transit mode (driving, walking, bicycling, or transit) – default is driving. User may specify ‘metric’ or ‘imperial’ units – default will be metric. Result string units are meters or feet. 
