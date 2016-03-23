@@ -1,15 +1,15 @@
 #**GeoUtilities**
 This simple Excel add-on is designed to provide basic geography tools by utilizing the Google Maps API and the US Federal Communications Commission API.  
 
-**Units:** Latitude and longitude values are returned in degree pairs (48.201561,-104.56818.
+**Units:** Latitude and longitude values are returned in degree pairs (48.201561,-104.56818).
 Distance measurements are returned in meters for metric and feet for imperia. 
 
-**API Key:** While it is possible to use these functions without a Google Maps API, heavy usage will require an API key to prevent reaching Google’s usage limits.
+**API Key:** While it is possible to use most of these functions without a Google Maps API, heavy usage will require an API key to prevent reaching Google’s usage limits.
 
 **Known Issues:**
-1.	If user attempts to run these functions on a large number of records simultaneously (for ex., geocoding a large table), Google may throw a query limit error. A better approach would be to use VBA to iterate through the rows to enter the results while pausing the loop for 1 second in between lookups. 
+1.	If user attempts to run these functions on a large number of records simultaneously (for ex., geocoding a large table), Google may throw a query limit error. A better approach would be to use VBA to iterate through the rows to enter the results while pausing the loop for 0.5 seconds in between lookups. 
 
-Requires reference to:
+VBA module requires reference to:
 -Microsoft XML, v6.0
 -Microsoft VBScript Regular Expressions 5.5
 
