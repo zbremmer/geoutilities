@@ -1,5 +1,5 @@
 #**GeoUtilities**
-This simple Excel add-on is designed to provide basic geography tools by utilizing the Google Maps API and the US Federal Communications Commission API.  
+This simple Excel add-on is designed to provide basic geo tools by utilizing the Google Maps API and the US Federal Communications Commission API.  
 
 **Units:** Latitude and longitude values are returned in degree pairs (48.201561,-104.56818).
 Distance measurements are returned in meters for metric and feet for imperia. 
